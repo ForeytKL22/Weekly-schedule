@@ -1,6 +1,3 @@
-var description = document.querySelector(".description");
-
-
 
 var currentDate = moment().format('LLL'); 
 document.getElementById("currentDay").innerHTML = currentDate;
@@ -8,24 +5,25 @@ document.getElementById("currentDay").innerHTML = currentDate;
 
 
 
-$(".description").on("click", function() {
-    var text = $(this).text().trim();
-
-    var descriptionInput = $("<textarea>")
-    // .addClass
-    .val(text);
-$(".description").replaceWith(descriptionInput);
+// $(".description").on("click", function() {
+//     var text = $(this).text().trim();
+//     var id = $(this).attr("id");
     
-}); 
+
+// }); 
 
 
 
 
 $(".saveBtn").on("click", function() {
-    localStorage.setItem("schedule", description).value; // returns [object HTMLDivElement]
-    // have also tried JSON.stringify in front of description but it
-    // just returns {} 
-    console.log(localStorage.getItem("schedule"));
+    var hour = $(this).prev().attr("id");
+    var description = $(this).prev().val();
+
+    localStorage.setItem(hour, description);
+
+    var retrieveDescription = localStorage.getItem(hour);
+    console.log('retrieved: ' + retrieveDescription);
+
 });
 
 
